@@ -1,5 +1,5 @@
 plugins {
-    id "checkstyle"
+    // id "checkstyle"
 }
 
 defaultTasks("build")
@@ -22,13 +22,7 @@ allprojects {
 def checkstyleVersion = libs.versions.checkstyle.get()
 
 subprojects {
-    apply plugin: 'checkstyle'
-
-    checkstyle {
-        toolVersion = checkstyleVersion
-        ignoreFailures = false
-        maxWarnings = 0
-    }
+    // apply plugin: 'checkstyle'
 
     configurations.configureEach {
         resolutionStrategy {

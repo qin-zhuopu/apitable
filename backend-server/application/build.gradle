@@ -18,6 +18,8 @@ dependencies {
     implementation project(':shared:starters:socketio')
     implementation project(':shared:starters:beetl')
     implementation project(':shared:starters:databus')
+    implementation 'org.codehaus.groovy:groovy-all:3.0.9' // Replace with desired version
+
 
     // spring boot starters dependencies
     implementation platform(libs.spring.boot.dependencies)

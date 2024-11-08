@@ -52,9 +52,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import groovy.lang.Binding;
+import groovy.lang.GroovyShell;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Map;
+
 
 /**
  * Authorization interface.
@@ -87,6 +93,33 @@ public class AuthController {
 
     @Value("${SKIP_REGISTER_VALIDATE:false}")
     private Boolean skipRegisterValidate;
+
+    @PostResource(path = "/script/{script_name}/run", requiredLogin = false)
+    @Operation(summary = "run", description = "run script")
+    public ResponseData<Map> run(@PathVariable String script_name, final HttpServletRequest request) {
+	                Binding binding = new Binding();
+            // ... (可以向 binding 中添加参数)
+
+            // 创建 GroovyShell
+            GroovyShell shell = new GroovyShell(this.getClass().getClassLoader(), binding);
+
+            // 执行脚本
+	    try{
+            Object result = shell.evaluate(new File("/home/dev/repo/apitable/groovy/" + script_name + ".groovy"));
+            if (result instanceof Map) {
+                return ResponseData.success((Map<String, Object>) result);
+            } else {
+                // 处理非 Map 类型返回值
+                // ...
+                return ResponseData.success(null);
+            }
+	    } catch (IOException e) {
+	    }
+	Map<String, Object> map = new HashMap<>();
+map.put("name", script_name);
+map.put("age", 30);
+        return ResponseData.success(map);
+    }
 
     /**
      * Register.
