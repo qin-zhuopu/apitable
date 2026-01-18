@@ -62,32 +62,32 @@ public class DefaultSubscriptionFeature implements SubscriptionFeature {
 
     @Override
     public Seat getSeat() {
-        return new Seat(2L);
+        return new Seat(-1L);
     }
 
     @Override
     public CapacitySize getCapacitySize() {
-        return new CapacitySize(1024 * 1024 * 1024L);
+        return new CapacitySize(-1L);
     }
 
     @Override
     public FileNodeNums getFileNodeNums() {
-        return new FileNodeNums(5L);
+        return new FileNodeNums(-1L);
     }
 
     @Override
     public RowsPerSheet getRowsPerSheet() {
-        return new RowsPerSheet(100L);
+        return new RowsPerSheet(-1L);
     }
 
     @Override
     public ArchivedRowsPerSheet getArchivedRowsPerSheet() {
-        return new ArchivedRowsPerSheet(250L);
+        return new ArchivedRowsPerSheet(-1L);
     }
 
     @Override
     public TotalRows getTotalRows() {
-        return new TotalRows(250L);
+        return new TotalRows(-1L);
     }
 
     @Override
@@ -143,7 +143,7 @@ public class DefaultSubscriptionFeature implements SubscriptionFeature {
 
     @Override
     public ApiQpsNums getApiQpsNums() {
-        return new ApiQpsNums(5L);
+        return new ApiQpsNums(-1L);
     }
 
     @Override
@@ -153,12 +153,12 @@ public class DefaultSubscriptionFeature implements SubscriptionFeature {
 
     @Override
     public RainbowLabel getRainbowLabel() {
-        return new RainbowLabel(false);
+        return new RainbowLabel(true);
     }
 
     @Override
     public Watermark getWatermark() {
-        return new Watermark(false);
+        return new Watermark(true);
     }
 
     @Override
@@ -193,12 +193,12 @@ public class DefaultSubscriptionFeature implements SubscriptionFeature {
 
     @Override
     public AllowEmbed getAllowEmbed() {
-        return new AllowEmbed(false);
+        return new AllowEmbed(true);
     }
 
     @Override
     public ControlFormBrandLogo getControlFormBrandLogo() {
-        return new ControlFormBrandLogo(false);
+        return new ControlFormBrandLogo(true);
     }
 
     @Override
@@ -218,22 +218,22 @@ public class DefaultSubscriptionFeature implements SubscriptionFeature {
 
     @Override
     public RemainTrashDays getRemainTrashDays() {
-        return new RemainTrashDays(-1L);
+        return new RemainTrashDays(7L);
     }
 
     @Override
     public RemainTimeMachineDays getRemainTimeMachineDays() {
-        return new RemainTimeMachineDays(-1L);
+        return new RemainTimeMachineDays(7L);
     }
 
     @Override
     public RemainRecordActivityDays getRemainRecordActivityDays() {
-        return new RemainRecordActivityDays(-1L);
+        return new RemainRecordActivityDays(30L);
     }
 
     @Override
     public AuditQueryDays getAuditQueryDays() {
-        return new AuditQueryDays(0L);
+        return new AuditQueryDays(-1L);
     }
 
     @Override
