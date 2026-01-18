@@ -1,4 +1,4 @@
-/**
+/*
  * APITable <https://github.com/apitable/apitable>
  * Copyright (C) 2022 APITable Ltd. <https://apitable.com>
  *
@@ -16,10 +16,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-export const formatString2Date = (value: string) => {
-  const str = value.replace(/年| /, '-').replace(/月/, '');
-  const parts = str.split('-');
-  const year = parts[0];
-  const month = parts[1].padStart(2, '0');
-  return `${year}-${month}`;
-};
+package com.apitable.workspace.dto;
+
+import lombok.Data;
+
+/**
+ * Datasheet Meta Column DTO.
+ */
+@Data
+public class DatasheetMetaColumnDTO {
+
+    private String dstId;
+
+    private Integer mdFieldMapSize;
+}

@@ -91,6 +91,7 @@ limit:
   template-max-count: ${TEMPLATE_MAX_COUNT:20}
   dsb-widget-max-count: ${DSB_WIDGET_MAX_COUNT:30}
   dst-robot-max-count: ${DST_ROBOT_MAX_COUNT:10}
+  max-invite-count-for-free: ${MAX_INVITE_COUNT_FOR_FREE:10}
 socket:
   domain: ${SOCKET_DOMAIN:http://127.0.0.1:3333/socket}
 
@@ -202,3 +203,7 @@ system:
 databus:
   client:
     host: ${DATABUS_SERVER_BASE_URL:http://127.0.0.1:8625}
+
+notification:
+  callback-url: ${NOTIFICATION_CALLBACK_URL:}
+  template-ids: ${NOTIFICATION_TEMPLATE_IDS:single_record_member_mention,single_record_comment_mentioned,task_reminder}

@@ -62,6 +62,7 @@ import {
   updateFieldPermissionMap,
   updateFieldPermissionSetting,
 } from 'modules/database/store/actions/resource';
+import { isClient } from 'utils/env';
 // The maximum number of data retransmission actions is online, beyond this value, no timeout retry operation will be performed
 const MAX_RETRY_LENGTH = 5000;
 const VIKA_OP_BACKUP = 'VIKA_OP_BACKUP';
@@ -526,12 +527,13 @@ export class RoomService {
     }, 500);
     const state = this.store.getState();
     const shareId = state.pageParams.shareId;
+    const embedId = state.pageParams.embedId;
     return this.io
       .request<ISocketResponseData, IClientRoomMessage>({
         type: SyncRequestTypes.CLIENT_ROOM_CHANGE,
         roomId: this.roomId,
         changesets,
-        shareId,
+        shareId: shareId || embedId,
       })
       .then((data) => {
         clearTimeout(timer);
@@ -570,6 +572,10 @@ export class RoomService {
       await collaEngine.handleAcceptCommit(cs);
       // TODO: There are cookies in changesets to be removed in the middle layer
       console.log('Data returned successfully: ', cs);
+      if (isClient()) {
+        const customEvent = new CustomEvent(cs.messageId);
+        window.dispatchEvent(customEvent);
+      }
     }
 
     this.nextSend();

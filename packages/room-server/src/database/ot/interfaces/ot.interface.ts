@@ -23,7 +23,7 @@ import { IAuthHeader, NodePermission } from '../../../shared/interfaces';
 /**
  * Maximum revision difference with which the client changes can be merged with the server's.
  */
-export const MAX_REVISION_DIFF = 100;
+export const MAX_REVISION_DIFF = parseInt(process.env.MAX_REVISION_DIFF || '100', 10);
 
 // effect key names for effect collector
 export enum EffectConstantName {
@@ -77,6 +77,7 @@ export interface IReadMetaData {
 export interface IRoomChannelMessage {
   roomId: string;
   shareId?: string;
+  embedId?: string; // embedId for embed message, param throws from shareId
   sourceDatasheetId?: string;
   sourceType?: SourceTypeEnum;
   changesets: ILocalChangeset[];
